@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="ajax.js"></script>
+    <style>
+       
+    </style>
+</head>
+<body>
+    <ul class="imgs"></ul>
+    <div></div>
+    <!-- <li class="one">
+        <a href="#"><img src="wyyimg/1.jpg" alt=""></a>
+    </li>
+    <li class="two">
+        <a href="#" ><img src="wyyimg/2.jpg" alt=""></a>
+    </li>
+    <li class="three">
+        <a href="#"><img src="wyyimg/3.jpg" alt=""></a>
+    </li>
+    <li class="four">
+        <a href="#"><img src="wyyimg/4.jpg" alt="" class="rose"></a>
+    </li>
+    <li class="five">
+        <a href="#"><img src="wyyimg/5.jpg" alt=""></a>
+    </li>
+    <li class="six">
+        <a href="#"><img src="wyyimg/6.jpg" alt=""></a>
+    </li> -->
+    
+    <script>
+        var imgs = document.querySelector('.imgs');
+        var div = document.querySelector('div');
+        ajax({
+            type: 'get',
+            url: 'https://mock.mengxuegu.com/mock/6034ddb2ca363222f3d578f2/example/swiper',
+            success: function(data){
+                console.log(data);
+                var datae = eval('(' + data + ')');
+                var str = [];
+                str = datae.data;
+                for(var i= 0 ; i< str.length;i++){
+                    var lis = document.createElement('li');
+                    imgs.appendChild(lis);
+                    imgs.children[i].innerHTML = '<a href="#"><img src="" alt=""></a>'; 
+                }
+                var img = document.querySelectorAll('img');
+                for(var i = 0;i < str.length;i++){
+                    img[i].src = str[i].url;
+                }
+                var li = imgs.querySelectorAll('li');
+                var num = ['one','two','three','four','five','six'];
+                for(var i = 0;i < li.length;i++){
+                    li[i].className = num[i];
+                    console.log(li[i].className);
+                }
+            },
+            error: function(){
+                console.log(22);
+            }
+        })
+    </script>
+</body>
+</html>
